@@ -17,55 +17,18 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Msg from './Components/Msg/Msg';
 import { fullLink } from './Components/link';
 
-const socket = io.connect("http://localhost:4000")
+export const socket = io.connect("http://localhost:4000")
 function App() {
-  const [sendMessage, setSendMessage] = useState(null)
   const token = localStorage.getItem("token")
-  // const [mes, setMes] = useState("")
-
-
+  const userId = localStorage.getItem("u_id")
   useEffect(() => {
-    // fetch(`${fullLink}/conversation/${auth}`, {
-    //   method: "GET"
-    // })
-
-
-
-    // socket.emit("addUsers", mes)
-
-    // socket.on("getUsers", (users) => {
-    //   console.log(users)
-    // })
-
-    // socket.on("getMessage", (data) => {
-    //   console.log(data)
-    // })
+    socket.emit("addUsers", userId)
 
   }, [])
 
 
-  const handleSubmit = () => {
-    // setMes(sendMessage)
-  }
-  const sendsms = () => {
-    socket.emit("sendMessage", {
-      senderId: "6426ea3079a058f5f63038a2",
-      receiver_id: "6426ea3079a058f5f63038a1",
-      text: "hi how are you from"
-    })
-  }
-
-
   return (
     <div className="App">
-
-      <form>
-        <input type="text" name='sendMessage' value={sendMessage} onChange={(e) => { setSendMessage(e.target.value) }} />
-
-      </form>
-      <button onClick={() => handleSubmit()}>submit</button>
-      <button onClick={() => { sendsms() }}>send</button>
-
       <ToastContainer />
       {token ? <Logout /> : null}
       <Routes>

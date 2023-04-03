@@ -1,0 +1,9 @@
+.show-frds {
+    display: grid;
+    grid-template-columns: 2.5fr 7.5fr;
+}
+
+.hide-frds {
+    display: "flex";
+    justify-content: center
+}

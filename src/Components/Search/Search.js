@@ -55,10 +55,10 @@ function Search() {
             })
     }
     return (
-        <div style={{ position: "relative" }}>
-            <TextField variant='standard' value={type} la
+        <div style={{ position: "relative", padding: "20px" }}>
+            <TextField style={{ minWidth: "500px" }} variant='standard' label="Search Friends" value={type} la
                 bel="Search frds" onChange={(e) => { handleChange(e.target.value) }} />
-            <div style={{ transition: "ease-in-out 0.7s", position: "absolute", top: 25, left: 510, backdropFilter: "blur(10px)", background: "transparent" }} >
+            <div style={{ transition: "ease-in-out 0.7s", position: "absolute", backdropFilter: "blur(10px)", background: "transparent" }} >
                 {
 
                     type ? (usersData !== undefined ? (
@@ -69,7 +69,7 @@ function Search() {
                             return (
                                 <div style={{ width: "300px", display: "flex", justifyContent: "space-around", alignItems: "center" }}>
                                     <div>{user.username}</div>
-                                    <Button onClick={() => { sendRequest(user.user_id) }}>send request</Button>
+                                    <Button sx={{ color: "rgb(219, 20, 20)", backgroundColor: "white" }} onClick={() => { sendRequest(user.user_id) }}>send request</Button>
                                 </div>
 
 
