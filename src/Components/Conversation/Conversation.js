@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { fullLink } from '../link'
 import { socket } from '../../App'
 import { Button } from '@mui/material'
+import { toast } from 'react-toastify'
 
 function Conversation({ chat, setChat, id, convo_id, receiver_id }) {
 
     const [msgbox, setMsgbox] = useState('')
-
+    const token = localStorage.getItem("token")
     const username = localStorage.getItem("username")
     const handleSubmit = () => {
         const data = {
@@ -14,6 +15,16 @@ function Conversation({ chat, setChat, id, convo_id, receiver_id }) {
             sender: id,
             sender_name: username,
             text: msgbox
+        }
+        setChat([...chat, data])
+
+        const showData = {
+            id: chat.length + 1,
+            conversation_id: convo_id,
+            sender: id,
+            sender_name: username,
+            text: msgbox
+
         }
         socket.emit("sendMessage", {
             sender: id,
@@ -25,12 +36,15 @@ function Conversation({ chat, setChat, id, convo_id, receiver_id }) {
             method: "POST",
             body: JSON.stringify({ data }),
             headers: {
-                "Content-type": "application/json"
+                "Content-type": "application/json",
+                "x-auth-token": token
+
             }
         }).then(res => res.json())
             .then(res => {
-                if (res.message == "success") {
-                    setChat([...chat, data])
+                if (res.message !== "success") {
+                    toast.error("error saving in database")
+
                 }
             })
 

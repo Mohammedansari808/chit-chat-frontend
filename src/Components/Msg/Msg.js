@@ -7,12 +7,17 @@ import { Button } from '@mui/material'
 import "./msg.css"
 function Msg() {
     const id = localStorage.getItem("u_id")
+    const token = localStorage.getItem("token")
+
     const [show, setShow] = useState(true)
     const [convo_id, setConvoId] = useState("")
     const [receiver_id, setReceiver_id] = useState()
     useEffect(() => {
         fetch(`${fullLink}/conversation/${id}`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                "x-auth-token": token
+            }
         }).then(res => res.json())
             .then(res => console.log(res.data))
     }, [])

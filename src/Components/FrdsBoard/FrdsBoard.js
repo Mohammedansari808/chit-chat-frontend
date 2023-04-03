@@ -5,11 +5,15 @@ import MyFriends from '../MyFriends'
 function FrdsBoard({ id, setConvoId, setReceiver_id }) {
 
     const [otherUsers, setOtherUsers] = useState()
-
+    const token = localStorage.getItem('token')
+    console.log(token)
     useEffect(() => {
 
         fetch(`${fullLink}/getconversations/${id}`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                "x-auth-token": token
+            }
         }).then(res => res.json())
             .then(result => setOtherUsers(result)
             )

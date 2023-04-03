@@ -6,19 +6,26 @@ import { toast } from 'react-toastify'
 function Search() {
     const [type, setType] = useState("")
     const username = localStorage.getItem("username")
+    const token = localStorage.getItem('token')
     const userId = localStorage.getItem("u_id")
     const [usersData, setUsersData] = useState()
 
     useEffect(() => {
         fetch(`${fullLink}/usersdata`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                "x-auth-token": token
+            }
         }).then((res) => res.json())
             .then((res) => { setUsersData(res); })
     }, [])
 
     const reload = () => {
         fetch(`${fullLink}/usersdata`, {
-            method: "GET"
+            method: "GET",
+            headers: {
+                "x-auth-token": token
+            }
         }).then((res) => res.json())
             .then((res) => { setUsersData(res); })
     }
@@ -45,6 +52,7 @@ function Search() {
             method: "POST",
             body: JSON.stringify({ data: data }),
             headers: {
+                "x-auth-token": token,
                 "Content-type": "application/json"
             }
         }).then(res => res.json())

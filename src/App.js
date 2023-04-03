@@ -21,10 +21,7 @@ export const socket = io.connect("http://localhost:4000")
 function App() {
   const token = localStorage.getItem("token")
   const userId = localStorage.getItem("u_id")
-  useEffect(() => {
-    socket.emit("addUsers", userId)
 
-  }, [])
 
 
   return (
@@ -39,7 +36,7 @@ function App() {
         <Route path="/verification-link/:username/:id" element={<Verification />} />
         <Route path="/password-change/:username" element={<Protectedroute><PasswordChange /></Protectedroute>} />
         <Route path="/forgetpassword" element={<Forget />} />
-        <Route path="/msg" element={<Msg />} />
+        <Route path="/msg" element={<Protectedroute><Msg /></Protectedroute>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

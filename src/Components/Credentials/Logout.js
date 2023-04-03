@@ -1,15 +1,18 @@
 import React, { useContext, useState } from 'react'
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import { socket } from '../../App';
 
 
 
 function Logout() {
     const navigate = useNavigate()
     const role_id = localStorage.getItem("role_id")
+    const userId = localStorage.getItem("u_id")
     const [load, setLoad] = useState(false)
 
     const logout = () => {
+        socket.emit("disconnection", userId)
         setLoad(true)
         //removing 
         localStorage.removeItem('token')

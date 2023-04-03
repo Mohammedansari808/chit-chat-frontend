@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import * as Yup from "yup";
 import { fullLink } from '../link';
 import { toast } from 'react-toastify';
+import { socket } from '../../App';
 const bookVali = Yup.object({
     username: Yup.string().min(3, "username or password is incorrect").required("Please fill the username"),
     password: Yup.string().min(4, "username or password is incorrect").required("Please fill the password")
@@ -38,6 +39,10 @@ function Login() {
                 localStorage.setItem("email", result.email)
 
                 toast.success("login successful")
+
+                socket.emit("addUsers", result.id)
+
+
 
                 navigate(`/msg`)
             } else {

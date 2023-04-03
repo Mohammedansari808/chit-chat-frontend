@@ -3,14 +3,18 @@ import { fullLink } from './link'
 
 function MyFriends({ user, id }) {
     const [users, setUsers] = useState()
-
+    const token = localStorage.getItem("token")
     const data = user.filter((member) => member !== id)
 
     useEffect(() => {
-        fetch(`${fullLink}/otheruserdata/${data[0]}`).then(res => res.json())
+        fetch(`${fullLink}/otheruserdata/${data[0]}`, {
+            method: "GET",
+            headers: {
+                "x-auth-token": token
+            }
+
+        }).then(res => res.json())
             .then(res => setUsers(res))
-
-
     }, [])
 
     return (

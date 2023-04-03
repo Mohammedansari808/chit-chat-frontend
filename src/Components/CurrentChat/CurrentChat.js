@@ -7,10 +7,9 @@ import ScrollToBottom from 'react-scroll-to-bottom'
 
 function CurrentChat({ id, convo_id, setConvoId, receiver_id }) {
 
-    const [chat, setChat] = useState()
-    const [arrMsg, setArrMsg] = useState()
-    const scrollRef = useRef()
-
+    const [chat, setChat] = useState([])
+    const [arrMsg, setArrMsg] = useState({})
+    const token = localStorage.getItem('token')
     useEffect(() => {
 
         socket.on("getUsers", (users) => {
@@ -32,7 +31,12 @@ function CurrentChat({ id, convo_id, setConvoId, receiver_id }) {
         console.log(arrMsg)
     }, [arrMsg])
     useEffect(() => {
-        fetch(`${fullLink}/get-chat/${convo_id}`)
+        fetch(`${fullLink}/get-chat/${convo_id}`, {
+            method: "GET",
+            headers: {
+                "x-auth-token": token
+            }
+        })
             .then(res => res.json())
             .then(res => {
                 setChat(res);
