@@ -18,7 +18,7 @@ import Msg from './Components/Msg/Msg';
 import { fullLink } from './Components/link';
 
 //socket.io
-export const socket = io.connect("http://localhost:4000")
+export const socket = io.connect(fullLink)
 function App() {
   return (
     <div className="App">
