@@ -1,3 +1,16 @@
+# About this Page
+This is a Private Chat Web Application. It is created using SOCKET.IO .Authentication and Authorization is given in this web application .So , Signup is mandatory to use this site.
+
+# How to Use the Site
+* Authorization and Authentication is used in this Website so Signup is mandatory.
+* After Signup You will get a VERIFICATION LINK to your mail.
+* You can Hop in only When you get verified by clicking the link.
+* Search friends in the search list and click the send Request.
+* After Clicking the person name will be displayed on the Friends section.
+* To Open the Chat click the user in the Friends section.
+* Hide the friends section if you need to .
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
