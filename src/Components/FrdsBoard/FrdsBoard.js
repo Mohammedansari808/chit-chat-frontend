@@ -32,9 +32,9 @@ function FrdsBoard({ id, setConvoId, setReceiver_id }) {
             <div className='frds-box'>
                 {
                     otherUsers ? (
-                        otherUsers.map((user) => {
+                        otherUsers.map((user, ind) => {
                             return (
-                                <div style={{ marginBottom: "2px" }}>
+                                <div key={ind} style={{ marginBottom: "2px" }}>
                                     <button onClick={() => { openConvo(user.conversation_id, user.members) }} class="per-frd-button">
                                         <MyFriends id={id} user={user.members} /></button>
                                     <hr style={{ margin: "0", padding: "0" }} />

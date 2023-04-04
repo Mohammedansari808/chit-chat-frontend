@@ -19,7 +19,6 @@ function CurrentChat({ id, convo_id, setConvoId, receiver_id }) {
 
 
         socket.on("getMessage", (user) => {
-            console.log(user)
             setArrMsg({
                 conversation_id: user.conversation_id,
                 sender: user.sender,
@@ -31,7 +30,6 @@ function CurrentChat({ id, convo_id, setConvoId, receiver_id }) {
     }, [])
     useEffect(() => {
         arrMsg && setChat([...chat, arrMsg])
-        console.log(arrMsg)
     }, [arrMsg])
 
     //getting all chat of the particular user
@@ -57,9 +55,9 @@ function CurrentChat({ id, convo_id, setConvoId, receiver_id }) {
 
                         <ScrollToBottom className='msg-container' >
                             {
-                                chat.map(info => {
+                                chat.map((info, ind) => {
                                     return (
-                                        <div className={info.sender == id ? "text-send-box" : "text-receive-box"}>
+                                        <div key={ind} className={info.sender == id ? "text-send-box" : "text-receive-box"}>
                                             <section style={{ margin: 0, padding: 0 }}>
                                                 <div className={info.sender == id ? "text-box" : "text-box-own"}>
                                                     <h4 style={{ marginLeft: "5px" }} className={info.sender == id ? "text" : "text-own"}>{info.sender_name}</h4>
