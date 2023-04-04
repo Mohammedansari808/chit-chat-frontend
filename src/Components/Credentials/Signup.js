@@ -82,12 +82,12 @@ function Signup() {
 
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
                         <Button sx={{
-                            color: "rgb(219, 20, 20)", backgroundColor: "white", '&:hover': {
+                            color: "white", backgroundColor: "rgb(219, 20, 20)", '&:hover': {
                                 backgroundColor: "black", color: "whitesmoke"
                             }
                         }} style={{ marginTop: "8px" }} type="submit" color="primary" variant="contained">{load ? <i className="fa fa-circle-o-notch fa-spin"></i> : null}{slink}</Button>
                         <Button sx={{
-                            color: "rgb(219, 20, 20)", backgroundColor: "white", '&:hover': {
+                            color: "white", backgroundColor: "rgb(219, 20, 20)", '&:hover': {
                                 backgroundColor: "black", color: "whitesmoke"
                             }
                         }} style={{ marginTop: "8px" }} onClick={() => navigate("/")} color="primary" variant="contained">{Sload ? <i className="fa fa-circle-o-notch fa-spin"></i> : null}login</Button>
