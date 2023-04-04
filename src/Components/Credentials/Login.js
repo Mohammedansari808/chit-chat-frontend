@@ -84,7 +84,7 @@ function Login() {
                             {formik.touched.password && formik.errors.password ? formik.errors.password : null}
                         </div>
                         <Button sx={{
-                            backgroundColor: "rgb(252 181 157)", '&:hover': {
+                            color: "rgb(219, 20, 20)", backgroundColor: "white", '&:hover': {
                                 backgroundColor: "black", color: "whitesmoke"
                             }
                         }} style={{ marginTop: "8px" }} type="submit" color="success" variant="contained">{load ? <i className="fa fa-circle-o-notch fa-spin"></i> : null}login</Button>

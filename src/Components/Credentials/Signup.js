@@ -81,8 +81,16 @@ function Signup() {
                     </div>
 
                     <div style={{ display: "flex", justifyContent: "space-between" }}>
-                        <Button style={{ marginTop: "8px" }} type="submit" color="primary" variant="contained">{load ? <i className="fa fa-circle-o-notch fa-spin"></i> : null}{slink}</Button>
-                        <Button style={{ marginTop: "8px" }} onClick={() => navigate("/")} color="primary" variant="contained">{Sload ? <i className="fa fa-circle-o-notch fa-spin"></i> : null}login</Button>
+                        <Button sx={{
+                            color: "rgb(219, 20, 20)", backgroundColor: "white", '&:hover': {
+                                backgroundColor: "black", color: "whitesmoke"
+                            }
+                        }} style={{ marginTop: "8px" }} type="submit" color="primary" variant="contained">{load ? <i className="fa fa-circle-o-notch fa-spin"></i> : null}{slink}</Button>
+                        <Button sx={{
+                            color: "rgb(219, 20, 20)", backgroundColor: "white", '&:hover': {
+                                backgroundColor: "black", color: "whitesmoke"
+                            }
+                        }} style={{ marginTop: "8px" }} onClick={() => navigate("/")} color="primary" variant="contained">{Sload ? <i className="fa fa-circle-o-notch fa-spin"></i> : null}login</Button>
 
                     </div>
 
