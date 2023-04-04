@@ -4,17 +4,20 @@ import { fullLink } from '../link'
 import "./currentChat.css"
 import { socket } from '../../App'
 import ScrollToBottom from 'react-scroll-to-bottom'
+import TimeAgo from 'timeago-react'
 
 function CurrentChat({ id, convo_id, setConvoId, receiver_id }) {
+
+
 
     const [chat, setChat] = useState([])
     const [arrMsg, setArrMsg] = useState({})
     const token = localStorage.getItem('token')
+
+    //getting a msg from the user using socket.io
     useEffect(() => {
 
-        socket.on("getUsers", (users) => {
 
-        })
         socket.on("getMessage", (user) => {
             console.log(user)
             setArrMsg({
@@ -30,6 +33,8 @@ function CurrentChat({ id, convo_id, setConvoId, receiver_id }) {
         arrMsg && setChat([...chat, arrMsg])
         console.log(arrMsg)
     }, [arrMsg])
+
+    //getting all chat of the particular user
     useEffect(() => {
         fetch(`${fullLink}/get-chat/${convo_id}`, {
             method: "GET",
@@ -55,10 +60,15 @@ function CurrentChat({ id, convo_id, setConvoId, receiver_id }) {
                                 chat.map(info => {
                                     return (
                                         <div className={info.sender == id ? "text-send-box" : "text-receive-box"}>
-                                            <div className={info.sender == id ? "text-box" : "text-box-own"}>
-                                                <h4 className={info.sender == id ? "text" : "text-own"}>{info.sender_name}</h4>
-                                                <div style={{ margin: "0", marginBottom: "4px", overflowWrap: "break-word" }} className={info.sender == id ? "text" : "text-own"}>{info.text}</div>
-                                            </div>
+                                            <section style={{ margin: 0, padding: 0 }}>
+                                                <div className={info.sender == id ? "text-box" : "text-box-own"}>
+                                                    <h4 style={{ marginLeft: "5px" }} className={info.sender == id ? "text" : "text-own"}>{info.sender_name}</h4>
+                                                    <div style={{ margin: "0", marginLeft: "5px", marginBottom: "7px", overflowWrap: "break-word" }} className={info.sender == id ? "text" : "text-own"}>{info.text}</div>
+                                                </div>
+                                                <p className={info.sender == id ? "send-time" : "receive-time"}>
+                                                    <TimeAgo datetime={info.createdAt} />
+                                                </p>
+                                            </section>
                                             <div></div>
                                         </div>
 

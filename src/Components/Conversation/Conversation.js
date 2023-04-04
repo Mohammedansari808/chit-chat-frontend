@@ -9,29 +9,29 @@ function Conversation({ chat, setChat, id, convo_id, receiver_id }) {
     const [msgbox, setMsgbox] = useState('')
     const token = localStorage.getItem("token")
     const username = localStorage.getItem("username")
+
+
+    //to send msg to database
     const handleSubmit = () => {
         const data = {
             conversation_id: convo_id,
             sender: id,
             sender_name: username,
-            text: msgbox
+            text: msgbox,
+            createdAt: Date.now()
         }
         setChat([...chat, data])
 
-        const showData = {
-            id: chat.length + 1,
-            conversation_id: convo_id,
-            sender: id,
-            sender_name: username,
-            text: msgbox
-
-        }
+        //sending msg using socketio
         socket.emit("sendMessage", {
             sender: id,
             sender_name: username,
             receiver_id: receiver_id,
-            text: msgbox
+            text: msgbox,
+            createdAt: Date.now()
         })
+
+        //saving messages to database
         fetch(`${fullLink}/send-message`, {
             method: "POST",
             body: JSON.stringify({ data }),
@@ -45,6 +45,8 @@ function Conversation({ chat, setChat, id, convo_id, receiver_id }) {
                 if (res.message !== "success") {
                     toast.error("error saving in database")
 
+                } else {
+                    setMsgbox("")
                 }
             })
 

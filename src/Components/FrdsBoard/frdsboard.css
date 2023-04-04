@@ -1,0 +1,23 @@
+.frds-box {
+
+    background-color: rgb(240, 237, 237);
+    overflow: scroll;
+    min-height: 400px;
+    overflow-x: hidden;
+    margin: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    box-shadow: 2px 2px 7px black;
+
+}
+
+.per-frd-button {
+    text-decoration: none;
+    border-radius: 7px;
+    cursor: pointer;
+    border: none;
+    width: 200px;
+    background: none
+}

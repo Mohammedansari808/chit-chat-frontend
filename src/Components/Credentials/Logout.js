@@ -7,13 +7,14 @@ import { socket } from '../../App';
 
 function Logout() {
     const navigate = useNavigate()
-    const role_id = localStorage.getItem("role_id")
+    const token = localStorage.getItem("token")
     const userId = localStorage.getItem("u_id")
-    const [load, setLoad] = useState(false)
 
     const logout = () => {
         socket.emit("disconnection", userId)
-        setLoad(true)
+        socket.on('disusers', (data) => {
+            console.log(data)
+        })
         //removing 
         localStorage.removeItem('token')
         localStorage.removeItem("role_id")
@@ -29,12 +30,24 @@ function Logout() {
         }}>
             <h3 style={{ marginLeft: "10px", color: "white" }} >CHIT CHAT</h3>
             <div>
-                <Button sx={{
+                {token ? <Button sx={{
                     backgroundColor: "white", color: "red", '&:hover': {
                         backgroundColor: "black", color: "whitesmoke"
                     }
-                }} style={{ margin: "10px", }} onClick={() => logout()} color="success" variant="contained">{load ? <i className="fa fa-circle-o-notch fa-spin"></i> : null}logout</Button>
+                }} style={{ margin: "10px", }} onClick={() => logout()} color="success" variant="contained">logout</Button>
+                    : <div><Button sx={{
+                        backgroundColor: "white", color: "red", '&:hover': {
+                            backgroundColor: "black", color: "whitesmoke"
+                        }
+                    }} style={{ margin: "10px", }} onClick={() => navigate("/")} color="success" variant="contained">login</Button>
+                        <Button sx={{
+                            backgroundColor: "white", color: "red", '&:hover': {
+                                backgroundColor: "black", color: "whitesmoke"
+                            }
+                        }} style={{ margin: "10px", }} onClick={() => navigate("/signup")} color="success" variant="contained">signup</Button>
 
+                    </div>
+                }
             </div>
         </div>
 

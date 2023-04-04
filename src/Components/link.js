@@ -1,2 +1,2 @@
-export const fullLink = "http://localhost:4000"
+export const fullLink = "https://chit-chat-backend-952o.onrender.com"
 // http://localhost:4000

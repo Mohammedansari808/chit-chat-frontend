@@ -1,8 +1,8 @@
 import { Button, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { fullLink } from '../link'
+import "./search.css"
 import { toast } from 'react-toastify'
-
 function Search() {
     const [type, setType] = useState("")
     const username = localStorage.getItem("username")
@@ -11,6 +11,7 @@ function Search() {
     const [usersData, setUsersData] = useState()
 
     useEffect(() => {
+        //to get the all usersdata
         fetch(`${fullLink}/usersdata`, {
             method: "GET",
             headers: {
@@ -19,7 +20,7 @@ function Search() {
         }).then((res) => res.json())
             .then((res) => { setUsersData(res); })
     }, [])
-
+    //to refresh the search list
     const reload = () => {
         fetch(`${fullLink}/usersdata`, {
             method: "GET",
@@ -42,7 +43,7 @@ function Search() {
         })
         setUsersData(data)
     }
-
+    //to conversation id between two users
     const sendRequest = (frdUser) => {
         const data = [
             userId,
@@ -66,7 +67,7 @@ function Search() {
         <div style={{ position: "relative", padding: "20px" }}>
             <TextField style={{ minWidth: "500px" }} variant='standard' label="Search Friends" value={type} la
                 bel="Search frds" onChange={(e) => { handleChange(e.target.value) }} />
-            <div style={{ transition: "ease-in-out 0.7s", position: "absolute", backdropFilter: "blur(10px)", background: "transparent" }} >
+            <div className='filter-container' >
                 {
 
                     type ? (usersData !== undefined ? (
@@ -75,7 +76,7 @@ function Search() {
                             return ele.username != username
                         }).map((user) => {
                             return (
-                                <div style={{ width: "300px", display: "flex", justifyContent: "space-around", alignItems: "center" }}>
+                                <div className='per-search'>
                                     <div>{user.username}</div>
                                     <Button sx={{ color: "rgb(219, 20, 20)", backgroundColor: "white" }} onClick={() => { sendRequest(user.user_id) }}>send request</Button>
                                 </div>

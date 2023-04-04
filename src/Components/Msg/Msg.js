@@ -6,21 +6,16 @@ import CurrentChat from '../CurrentChat/CurrentChat'
 import { Button } from '@mui/material'
 import "./msg.css"
 function Msg() {
+    //authentication
     const id = localStorage.getItem("u_id")
     const token = localStorage.getItem("token")
 
+    //show and hide frds list
     const [show, setShow] = useState(true)
+
+    //to pass conversation id and other user id as props
     const [convo_id, setConvoId] = useState("")
     const [receiver_id, setReceiver_id] = useState()
-    useEffect(() => {
-        fetch(`${fullLink}/conversation/${id}`, {
-            method: "GET",
-            headers: {
-                "x-auth-token": token
-            }
-        }).then(res => res.json())
-            .then(res => console.log(res.data))
-    }, [])
     return (
         <div><div><Search /><Button sx={{
             backgroundColor: "rgb(219, 20, 20)", color: "white", "&:hover": {

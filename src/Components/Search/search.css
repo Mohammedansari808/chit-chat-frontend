@@ -1,0 +1,13 @@
+.filter-container {
+    transition: ease-in-out 0.7s;
+    position: absolute;
+    backdrop-filter: blur(10px);
+    background: transparent
+}
+
+.per-search {
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center
+}

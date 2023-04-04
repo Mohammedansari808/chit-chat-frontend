@@ -58,11 +58,11 @@ function Login() {
         <div >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <h2 style={{ margin: "15px" }}>Login</h2>
-                <Button sx={{
+                {/* <Button sx={{
                     color: "white", backgroundColor: "rgb(208 179 248)", '&:hover': {
                         backgroundColor: "black", color: "whitesmoke"
                     }
-                }} style={{ margin: "15px" }} onClick={() => navigate("/signup")} color="success" variant="contained">Signup</Button>
+                }} style={{ margin: "15px" }} onClick={() => navigate("/signup")} color="success" variant="contained">Signup</Button> */}
 
             </div>
 

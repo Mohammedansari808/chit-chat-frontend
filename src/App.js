@@ -17,17 +17,13 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 import Msg from './Components/Msg/Msg';
 import { fullLink } from './Components/link';
 
+//socket.io
 export const socket = io.connect("http://localhost:4000")
 function App() {
-  const token = localStorage.getItem("token")
-  const userId = localStorage.getItem("u_id")
-
-
-
   return (
     <div className="App">
       <ToastContainer />
-      {token ? <Logout /> : null}
+      <Logout />
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
